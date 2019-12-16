@@ -13,9 +13,11 @@ const sketch = (p: p5): void => {
     p.frameRate(10);
     scene.setup(p);
   };
+
   p.keyPressed = (): void => {
     scene.keyPressed(p.keyCode);
   };
+
   p.draw = (): void => {
     p.background(0);
     scene.draw(p);
