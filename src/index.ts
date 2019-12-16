@@ -1,5 +1,7 @@
 import { Scene } from './scene';
 import * as p5 from 'p5';
+// @ts-ignore
+// import * as tf from '@tensorflow/tfjs';
 
 const sketch = (p: p5): void => {
   const scene = new Scene();
@@ -7,13 +9,13 @@ const sketch = (p: p5): void => {
   p.preload = (): void => {};
 
   p.setup = (): void => {
-    p.createCanvas(p.windowWidth, p.windowHeight, p.WEBGL);
+    p.createCanvas(400, 400); // 40x40 board
+    p.frameRate(10);
+    scene.setup(p);
   };
-
-  p.windowResized = (): void => {
-    p.resizeCanvas(p.windowWidth, p.windowHeight);
+  p.keyPressed = (): void => {
+    scene.keyPressed(p.keyCode);
   };
-
   p.draw = (): void => {
     p.background(0);
     scene.draw(p);

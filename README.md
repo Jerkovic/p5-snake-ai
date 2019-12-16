@@ -1,42 +1,30 @@
-# p5-ts-starter-kit
+# p5-snake-ai
 
-Generate a project with [p5.js](https://p5js.org/) and [typescript](https://www.typescriptlang.org/) working out of the box.
+Snake Game with [p5.js](https://p5js.org/), Tenserflow.js and [typescript](https://www.typescriptlang.org/).
 
 ## Installation
 
 Clone the repo
 
 ```
-git clone https://github.com/pierpo/p5-ts-starter-kit.git
+git clone https://github.com/Jerkovic/p5-snake-ai.git
 ```
 
-Reset the git history
-
-```
-mv p5-ts-starter-kit my-awesome-art
-cd my-awesome-art
-rm -rf .git
-git init
-git add .
-git commit -m "initial commit"
-```
 
 Install the dependencies
 
 ```
-yarn
+npm install
 ```
 
 Run the project
 
 ```
-yarn start
+npm start
 ```
 
-You may now open `localhost:8080`. You're good to go :blush:
+Voila! Goto `localhost:8080`. You're good to go:
 
-## Similar projects
+## Machine Learning 
 
-This starter kit was greatly inspired by
-[Gaweph](https://github.com/Gaweph/p5-typescript-starter)'s one. The main
-difference is that here we use the npm distribution of `p5`, use `webpack` and setup tools like `eslint` and `prettier`.
+Todo AI 
