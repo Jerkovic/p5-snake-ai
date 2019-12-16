@@ -59,6 +59,7 @@ export class Snake {
       p.rect(this.tail[i].x, this.tail[i].y, scl, scl);
     }
     p.rect(this.head.x, this.head.y, scl, scl);
+    p.text(this.eatenApples, 200, 50);
   }
 
   public setDir(x: number, y: number): void {

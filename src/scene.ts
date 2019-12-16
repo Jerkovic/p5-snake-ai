@@ -11,12 +11,12 @@ export class Scene {
 
   public setup(p: p5): void {
     this.pickAppleLocation(p);
-    this.randomEmitter(p);
+    // this.randomEmitter(p);
   }
 
   public randomEmitter(p: p5): void {
     let me = this;
-    let keyCodes = [65, 68, 83, 87]; // outputs from nn
+    let keyCodes = [65, 68, 83, 87]; // could be the outputs from nn
     setInterval(function() {
       me.keyPressed(p.random(keyCodes));
     }, 1500);
