@@ -3,6 +3,7 @@ import { Vector } from 'p5';
 
 const scl = 10;
 
+
 export class Snake {
   public head: Vector;
   public tail: Vector[] = [];
@@ -38,8 +39,8 @@ export class Snake {
   }
   public reset(): void {
     this.setDir(1, 0);
-    this.head.x = 3;
-    this.head.y = 3;
+    this.head.x = 20;
+    this.head.y = 20;
     this.head.mult(scl);
     this.eatenApples = 0;
     this.tail = [];
@@ -59,7 +60,11 @@ export class Snake {
       p.rect(this.tail[i].x, this.tail[i].y, scl, scl);
     }
     p.rect(this.head.x, this.head.y, scl, scl);
+
+    this.drawSensors(p);
+
     p.text(this.eatenApples, 200, 50);
+    p.text(this.head.x / scl + 'x' + this.head.y / scl, 200, 60);
   }
 
   public setDir(x: number, y: number): void {
@@ -70,7 +75,9 @@ export class Snake {
     this.dir.x = x;
     this.dir.y = y;
   }
-
+  public drawSensors(p: p5): void {
+    p.stroke(0, 60, 0);
+  }
   public update(p: p5): void {
     for (let i = 0; i < this.tail.length - 1; i++) {
       this.tail[i] = this.tail[i + 1];

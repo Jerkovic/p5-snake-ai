@@ -4,6 +4,10 @@ import { Vector } from 'p5';
 
 const scl = 10;
 const gridSize = 40;
+const W_KEY = 87;
+const A_KEY = 65;
+const S_KEY = 83;
+const D_KEY = 68;
 
 export class Scene {
   private snake: Snake = new Snake();
@@ -11,7 +15,7 @@ export class Scene {
 
   public setup(p: p5): void {
     this.pickAppleLocation(p);
-    // this.randomEmitter(p);
+    this.randomEmitter(p);
   }
 
   public randomEmitter(p: p5): void {
@@ -19,7 +23,7 @@ export class Scene {
     let keyCodes = [65, 68, 83, 87]; // could be the outputs from nn
     setInterval(function() {
       me.keyPressed(p.random(keyCodes));
-    }, 1500);
+    }, 500);
   }
 
   public pickAppleLocation(p: p5) {
@@ -27,9 +31,7 @@ export class Scene {
     this.apple.y = p.floor(p.random(gridSize));
     console.table(this.apple);
     this.apple.mult(scl);
-    console.table(this.apple);
   }
-
   public draw(p: p5): void {
     if (this.snake.eatApple(this.apple)) {
       this.pickAppleLocation(p);
@@ -44,16 +46,20 @@ export class Scene {
   }
 
   public keyPressed(keyCode: number) {
-    if (keyCode === 83) {
-      this.snake.setDir(0, 1);
-    }
-    if (keyCode === 87) {
+    // W
+    if (keyCode === W_KEY) {
       this.snake.setDir(0, -1);
     }
-    if (keyCode === 65) {
+    // A
+    if (keyCode === A_KEY) {
       this.snake.setDir(-1, 0);
     }
-    if (keyCode === 68) {
+    // S
+    if (keyCode === S_KEY) {
+      this.snake.setDir(0, 1);
+    }
+    // D
+    if (keyCode === D_KEY) {
       this.snake.setDir(1, 0);
     }
   }
