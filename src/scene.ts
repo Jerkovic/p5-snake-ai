@@ -47,11 +47,11 @@ export class Scene {
 
   public keyPressed(keyCode: number) {
     // W
-    if (keyCode === W_KEY) {
+    if (keyCode === W_KEY) { // UP
       this.snake.setDir(0, -1);
     }
     // A
-    if (keyCode === A_KEY) {
+    if (keyCode === A_KEY) { //
       this.snake.setDir(-1, 0);
     }
     // S
