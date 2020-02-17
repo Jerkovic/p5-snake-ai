@@ -13,7 +13,6 @@ export class Snake {
     this.head = new Vector();
     this.dir = new Vector();
     this.reset();
-
   }
   public gameOver(p: p5) {
     if (
@@ -39,12 +38,24 @@ export class Snake {
   }
   public observe(): void {
     // check 8 directions for wall, tail and apple
-    console.log(this.dir);
+    // orientations from the snakes head
+    const headings = {
+      w: { x: -1, y: 0 },
+      nw: { x: -1, y: -1 },
+      n: { x: 0, y: -1 },
+      ne: { x: 1, y: -1 },
+      e: { x: 1, y: 0 },
+      se: { x: 1, y: 1 },
+      s: { x: 0, y: 1 },
+      sw: { x: 0, y: 1 }
+    };
+    console.table(headings);
+    //console.log(this.dir);
   }
   public reset(): void {
     this.setDir(1, 0);
-    this.head.x = 20;
-    this.head.y = 20;
+    this.head.x = 1;
+    this.head.y = 2;
     this.head.mult(scl);
     this.eatenApples = 0;
     this.tail = [];
@@ -57,7 +68,6 @@ export class Snake {
     return false;
   }
   public draw(p: p5): void {
-    this.observe();
     p.stroke(0);
     p.fill(255);
     for (let i = 0; i < this.tail.length; i++) {
@@ -65,10 +75,9 @@ export class Snake {
     }
     p.rect(this.head.x, this.head.y, scl, scl);
 
-    this.drawSensors(p);
-
-    p.text(this.eatenApples, 200, 50);
-    p.text(this.head.x / scl + 'x' + this.head.y / scl, 200, 60);
+    this.observe();
+    //p.text(this.eatenApples, 200, 50);
+    //p.text(this.head.x / scl + 'x' + this.head.y / scl, 200, 60);
   }
 
   public setDir(x: number, y: number): void {
@@ -78,11 +87,6 @@ export class Snake {
     if (this.dir.x < 0 && x > 0 && this.eatenApples) return;
     this.dir.x = x;
     this.dir.y = y;
-  }
-  public drawSensors(p: p5): void {
-    p.stroke(55, 55, 55);
-    p.fill(55, 55, 55);
-    p.line(this.head.x, this.head.y, this.head.y, 400);
   }
   public update(p: p5): void {
     for (let i = 0; i < this.tail.length - 1; i++) {

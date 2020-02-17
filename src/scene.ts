@@ -2,8 +2,8 @@ import * as p5 from 'p5';
 import { Snake } from './snake';
 import { Vector } from 'p5';
 
-const scl = 10;
-const gridSize = 40;
+const scl = 10; // pixels per cell
+const gridSize = 40; // cells
 const W_KEY = 87;
 const A_KEY = 65;
 const S_KEY = 83;
@@ -15,9 +15,8 @@ export class Scene {
 
   public setup(p: p5): void {
     this.pickAppleLocation(p);
-    this.randomEmitter(p);
+    // this.randomEmitter(p);
   }
-
   public randomEmitter(p: p5): void {
     let me = this;
     let keyCodes = [65, 68, 83, 87]; // could be the outputs from nn
@@ -32,15 +31,25 @@ export class Scene {
     console.table(this.apple);
     this.apple.mult(scl);
   }
+  public drawGrid(p: p5) {
+    for(let x = 0; x < gridSize; x++) {
+      for (let y = 0; y < gridSize; y++) {
+        p.stroke(10);
+        p.fill(50);
+        p.rect(x * scl, y * scl, scl, scl);
+      }
+    }
+  }
   public draw(p: p5): void {
     if (this.snake.eatApple(this.apple)) {
       this.pickAppleLocation(p);
     }
-    p.stroke(255, 0, 0);
+    this.drawGrid(p);
+    p.stroke(10);
     p.fill(255, 0, 0);
     p.rect(this.apple.x, this.apple.y, scl, scl);
 
-    this.snake.gameOver(p);
+    this.snake.gameOver(p); // not in snake class??
     this.snake.update(p);
     this.snake.draw(p);
   }
